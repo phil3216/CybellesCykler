@@ -71,5 +71,20 @@ namespace DataAccess
         {
             throw new NotImplementedException();
         }
+
+        public List<Bike> GetAllBikes()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Order> GetAllOrders()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Rentee> GetAllRentees()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
