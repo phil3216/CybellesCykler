@@ -10,6 +10,7 @@ using System.Data;
 
 namespace DataAccess
 {
+
     public class DBHandler : CommonDB
     {
         public DBHandler(string connectionString) : base(connectionString)
@@ -136,47 +137,98 @@ namespace DataAccess
 
         public bool NewRentee(Rentee rentee)
         {
-            throw new NotImplementedException();
+            SqlCommand command = new SqlCommand("INSERT INTO Renters ([Name],Phonenumber,PhysAddress,RegisterDate) VALUES(@name,@phonenumber,@physAddress,@registerDate)");
+            command.Parameters.AddWithValue("@name",rentee.Name);
+            command.Parameters.AddWithValue("@phonenumber",rentee.Phonenumber);
+            command.Parameters.AddWithValue("@physAddress",rentee.Address);
+            command.Parameters.AddWithValue("@registerDate",rentee.RegisterDate);
+
+            return ExecuteNonQuery(command);
         }
 
         public bool NewOrder(Order order)
         {
-            throw new NotImplementedException();
+            SqlCommand command = new SqlCommand("INSERT INTO Orders (BikeID,DeliveryDate,OrderDate,RenteeID) VALUES(@bikeID,@deliveryDate,@orderDate,@renteeID)");
+            command.Parameters.AddWithValue("@bikeID", order.Bike.ID);
+            command.Parameters.AddWithValue("@deliveryDate", order.DeliveryDate);
+            command.Parameters.AddWithValue("@orderDate", order.RentDate);
+            command.Parameters.AddWithValue("@renteeID", order.Rentee.ID);
+
+            return ExecuteNonQuery(command);
         }
 
         public bool NewBike(Bike bike)
         {
-            throw new NotImplementedException();
+            SqlCommand command = new SqlCommand("INSERT INTO Bikes (BikeDescription,PricePerDay,BikeKind) VALUES(@bikeDescription,@pricePerDay,@bikeKind)");
+            command.Parameters.AddWithValue("@bikeDescription", bike.Description);
+            command.Parameters.AddWithValue("@pricePerDay", bike.PricePerDay);
+            command.Parameters.AddWithValue("@bikeKind", bike.Kind);
+
+            return ExecuteNonQuery(command);
         }
 
         public bool UpdateRentee(Rentee rentee)
         {
-            throw new NotImplementedException();
+            SqlCommand command = new SqlCommand("UPDATE Renters SET [Name]=@name,Phonenumber=@phonenumber,PhysAddress=@address,RegisterDate=@registerDate WHERE ID=@id");
+            command.Parameters.AddWithValue("@id", rentee.ID);
+            command.Parameters.AddWithValue("@name", rentee.Name);
+            command.Parameters.AddWithValue("@phonenumber", rentee.Phonenumber);
+            command.Parameters.AddWithValue("@address", rentee.Address);
+            command.Parameters.AddWithValue("@registerDate", rentee.RegisterDate);
+
+            return ExecuteNonQuery(command);
         }
 
         public bool UpdateOrder(Order order)
         {
-            throw new NotImplementedException();
+            SqlCommand command = new SqlCommand("UPDATE Orders SET BikeID=@bikeID,DeliveryDate=@deliveryDate,OrderDate=@orderDate,RenteeID=@renteeID WHERE ID=@id");
+            command.Parameters.AddWithValue("@id", order.ID);
+            command.Parameters.AddWithValue("@bikeID",order.Bike.ID);
+            command.Parameters.AddWithValue("@deliveryDate", order.DeliveryDate);
+            command.Parameters.AddWithValue("@orderDate", order.RentDate);
+            command.Parameters.AddWithValue("@renteeID", order.Rentee.ID);
+
+            return ExecuteNonQuery(command);
         }
 
         public bool UpdateBike(Bike bike)
         {
-            throw new NotImplementedException();
+            SqlCommand command = new SqlCommand("UPDATE Bikes SET BikeDescription=@bikeDescription,PricePerDay=@pricePerDay,BikeKind=@bikeKind WHERE ID=@id");
+            command.Parameters.AddWithValue("@id", bike.ID);
+            command.Parameters.AddWithValue("@bikeDescription", bike.Description);
+            command.Parameters.AddWithValue("@phonenumber", bike.PricePerDay);
+            command.Parameters.AddWithValue("@bikeKind", bike.Kind);
+
+            return ExecuteNonQuery(command);
+
         }
 
         public bool DeleteRentee(Rentee rentee)
         {
-            throw new NotImplementedException();
+            SqlCommand command = new SqlCommand("DELETE FROM Orders WHERE RenteeID=@id;" +
+                                                "DELETE FROM Renters WHERE ID=@id;");
+            command.Parameters.AddWithValue("@id", rentee.ID);
+
+            return ExecuteNonQuery(command);
         }
 
         public bool DeleteOrder(Order order)
         {
-            throw new NotImplementedException();
+
+            SqlCommand command = new SqlCommand("DELETE FROM Orders WHERE ID=@id;");
+            command.Parameters.AddWithValue("@id",order.ID);
+
+            return ExecuteNonQuery(command);
+
         }
 
         public bool DeleteBike(Bike bike)
         {
-            throw new NotImplementedException();
+            SqlCommand command = new SqlCommand("DELETE FROM Orders WHERE BikeID=@id;" +
+                                                "DELETE FROM Bikes WHERE ID=@id");
+            command.Parameters.AddWithValue("@id", bike.ID);
+
+            return ExecuteNonQuery(command);
         }
 
     }

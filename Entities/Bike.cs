@@ -15,7 +15,7 @@ namespace Entities
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected decimal pricePerDay;
-        protected string bikeDescription;
+        protected string description;
         protected int id;
         protected Bikekind kind;
 
@@ -36,18 +36,19 @@ namespace Entities
 
 
 
-        public string BikeDescription
+        public string Description
         {
-            get => bikeDescription;
+            get => description;
             set
             {
                 (bool b, string s) = ValidateBikeDescription(value);
                 if (!b) throw new ArgumentException(s);
 
-                bikeDescription = value;
+                description = value;
                 OnPropertyChanged();
             }
         }
+
 
 
         public int ID
@@ -110,7 +111,7 @@ namespace Entities
         public Bike(decimal pricePerDay,string bikeDescription,Bikekind kind,int id)
         {
             PricePerDay = pricePerDay;
-            BikeDescription = bikeDescription;
+            Description = bikeDescription;
             Kind = kind;
             ID = id;
         }
@@ -126,7 +127,7 @@ namespace Entities
         {
             return other != null &&
                    PricePerDay == other.PricePerDay &&
-                   BikeDescription == other.BikeDescription &&
+                   Description == other.Description &&
                    ID == other.ID &&
                    Kind == other.Kind;
         }
@@ -135,7 +136,7 @@ namespace Entities
         {
             var hashCode = 1574458350;
             hashCode = hashCode * -1521134295 + PricePerDay.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(BikeDescription);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Description);
             hashCode = hashCode * -1521134295 + ID.GetHashCode();
             hashCode = hashCode * -1521134295 + Kind.GetHashCode();
             return hashCode;
@@ -153,7 +154,7 @@ namespace Entities
 
         public override string ToString()
         {
-            return $"PricePerDay: {PricePerDay},BikeDescription: {BikeDescription},Kind: {Kind},ID: {ID}";
+            return $"PricePerDay: {PricePerDay},BikeDescription: {Description},Kind: {Kind},ID: {ID}";
         }
     }
 }
