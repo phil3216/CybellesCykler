@@ -127,10 +127,8 @@ namespace Entities
             return (true, String.Empty);
         }
 
-        public decimal GetPrice()
-        {
-            throw new NotImplementedException();
-        }
+        public decimal GetPrice => throw new NotImplementedException();
+        
 
         public Order(Bike bike,Rentee rentee,DateTime rentDate,DateTime deliveryDate,int id)
         {

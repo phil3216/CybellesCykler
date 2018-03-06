@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Business;
+using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,19 @@ namespace CybellesCykler
     /// </summary>
     public partial class Orders : Window
     {
-        public Orders()
+        DataController dataController;
+
+        public Orders(DataController controller)
         {
             InitializeComponent();
+            dataController = controller;
+            DataContext = dataController;
+            dataController.ReloadEntities<Order>();
+        }
+
+        private void OrdersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectedOrder.DataContext = OrdersList.SelectedItem;
         }
     }
 }
