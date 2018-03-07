@@ -61,6 +61,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddOrUpdateOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddOrUpdateRentee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -75,6 +79,9 @@
     </Page>
     <Compile Include="AddOrUpdateBike.xaml.cs">
       <DependentUpon>AddOrUpdateBike.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddOrUpdateOrder.xaml.cs">
+      <DependentUpon>AddOrUpdateOrder.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddOrUpdateRentee.xaml.cs">
       <DependentUpon>AddOrUpdateRentee.xaml</DependentUpon>

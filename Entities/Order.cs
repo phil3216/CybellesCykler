@@ -92,6 +92,7 @@ namespace Entities
                 OnPropertyChanged();
             }
         }
+        public decimal Price => (DeliveryDate - RentDate).Days * Bike.PricePerDay;
 
         public static (bool, string) ValidateBike(Bike value)
         {
@@ -127,15 +128,18 @@ namespace Entities
             return (true, String.Empty);
         }
 
-        public decimal GetPrice => throw new NotImplementedException();
         
 
-        public Order(Bike bike,Rentee rentee,DateTime rentDate,DateTime deliveryDate,int id)
+        public Order(Bike bike,Rentee rentee,DateTime rentDate,DateTime deliveryDate)
         {
             Bike = bike;
             Rentee = rentee;
             RentDate = rentDate;
             DeliveryDate = deliveryDate;
+        }
+
+        public Order(Bike bike, Rentee rentee, DateTime rentDate, DateTime deliveryDate, int id) : this(bike,rentee,rentDate,deliveryDate)
+        {
             ID = id;
         }
 

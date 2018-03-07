@@ -38,7 +38,53 @@ namespace CybellesCykler
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+            if (OrdersList.SelectedItem == null)
+            {
+                MessageBox.Show("Du skal vælge en ordre for at kunne slette den");
+                return;
+            }
+
             dataController.DeleteEntity((IPersistable)OrdersList.SelectedItem);
+        }
+
+        private void Create_Click(object sender, RoutedEventArgs e)
+        {
+            dataController.ReloadEntities<Bike>();
+            dataController.ReloadEntities<Rentee>();
+            List<Bike> bikes = dataController.Bikes.ToList();
+            List<Rentee> renters = dataController.Renters.ToList();
+            Order order = new Order(bikes[0], renters[0], DateTime.Now, DateTime.Now);
+            AddOrUpdateOrder add = new AddOrUpdateOrder(order, renters, bikes);
+            add.Title = "Tilføj";
+            add.ShowDialog();
+
+            if (!add.IsCancelled)
+            {
+                dataController.NewEntity(order);
+            }
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            dataController.ReloadEntities<Bike>();
+            dataController.ReloadEntities<Rentee>();
+
+            if (OrdersList.SelectedItem == null)
+            {
+                MessageBox.Show("Du skal vælge en ordre for at kunne redigere den");
+                return;
+            }
+
+            Order order = (Order)OrdersList.SelectedItem;
+            order = new Order(order.Bike, order.Rentee, order.RentDate, order.DeliveryDate,order.ID);
+            AddOrUpdateOrder add = new AddOrUpdateOrder(order, dataController.Renters.ToList(),dataController.Bikes.ToList());
+            add.Title = "Rediger";
+            add.ShowDialog();
+
+            if (!add.IsCancelled)
+            {
+                dataController.UpdateEntity(order);
+            }
         }
     }
 }

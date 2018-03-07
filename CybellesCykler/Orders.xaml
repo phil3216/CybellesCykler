@@ -15,7 +15,7 @@
             <ColumnDefinition Width="211*"/>
             <ColumnDefinition Width="197*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="OrdersList" Margin="10,36,2,2" ItemsSource="{Binding Orders,Mode=OneWay}" SelectionChanged="OrdersList_SelectionChanged">
+        <ListBox x:Name="OrdersList" Margin="10,36,2,2" ItemsSource="{Binding Orders}" SelectionChanged="OrdersList_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
@@ -30,20 +30,21 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Label Content="Orders" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="138"/>
-        <Button x:Name="Create" Content="Opret" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Width="59" Grid.Row="1"/>
-        <Button x:Name="Edit" Content="Rediger" HorizontalAlignment="Left" Margin="80,3,0,0" VerticalAlignment="Top" Width="59" Grid.Row="1"/>
-        <Button x:Name="Delete" Content="Slet" HorizontalAlignment="Left" Margin="150,3,0,0" VerticalAlignment="Top" Width="59" Grid.Row="1" Click="Delete_Click"/>
+        <Button x:Name="Create" Content="Opret" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Width="55" Grid.Row="1" Click="Create_Click"/>
+        <Button x:Name="Edit" Content="Rediger" HorizontalAlignment="Left" Margin="80,3,0,0" VerticalAlignment="Top" Width="55" Grid.Row="1" Click="Edit_Click"/>
+        <Button x:Name="Delete" Content="Slet" HorizontalAlignment="Left" Margin="150,3,0,0" VerticalAlignment="Top" Width="55" Grid.Row="1" Click="Delete_Click"/>
         <GroupBox Header="Information" Margin="3,36,8,10" Grid.Column="1" Grid.RowSpan="2">
-            <Grid x:Name="SelectedOrder" HorizontalAlignment="Left" Height="353" VerticalAlignment="Top" Width="176" Margin="0,0,-3.2,0">
-                <Label x:Name="Lejernavn" Content="{Binding Rentee.Name,Mode=OneWay, StringFormat='{}Lejernavn: {0}'}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="RenteeDate" Content="Udlånsdato:" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="DeliveryDate" Content="Afleveringsdato:" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="Bike" Content="Cykel: " HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="Address" Content="Adresse: " HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="Phonenumber" Content="Telefon: " HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-                <Label x:Name="Price" Content="Pris: " HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top"/>
+            <Grid x:Name="SelectedOrder" Margin="0,0,-2,2">
+                <Label ContentStringFormat="Lejerenavn: {0}" Content="{Binding Rentee.Name}"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <Label ContentStringFormat="Udlånsdato: {0:dd-MM-yyyy}" Content="{Binding RentDate}" HorizontalAlignment="Stretch" Margin="10,103,0,0" VerticalAlignment="Top"/>
+                <Label ContentStringFormat="Afleveringsdato: {0:dd-MM-yyyy}" Content="{Binding DeliveryDate}" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top"/>
+                <Label ContentStringFormat="Cykel: {0}" Content="{Binding Bike.Kind}" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top"/>
+                <Label ContentStringFormat="Adresse: {0}" Content="{Binding Rentee.Address}" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                <Label ContentStringFormat="Telefon: {0}" Content="{Binding Rentee.Phonenumber}" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+                <Label ContentStringFormat="Pris: {0} Kr." Content="{Binding Price}" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top"/>
+
                 <Label x:Name="BikeDescription" Content="Cykelbeskrivelse: " HorizontalAlignment="Left" Margin="10,227,0,0" VerticalAlignment="Top"/>
-                <TextBlock HorizontalAlignment="Left" Margin="10,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="86" Width="156" Text="En eller anden tekstblok med cykelbeskrivelse her"/>
+                <TextBlock  HorizontalAlignment="Left" Margin="15,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="86" Width="156" Text="{Binding Bike.Description}"/>
             </Grid>
         </GroupBox>
         <Button Content="Vejrudsigt" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top" Width="59" Grid.Row="1"/>
