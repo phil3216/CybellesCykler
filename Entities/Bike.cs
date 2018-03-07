@@ -108,12 +108,16 @@ namespace Entities
             return (true, String.Empty);
         }
 
-        public Bike(decimal pricePerDay,string bikeDescription,Bikekind kind,int id)
+        public Bike(decimal pricePerDay,string bikeDescription,Bikekind kind,int id) : this(pricePerDay,bikeDescription,kind)
+        {
+            ID = id;
+        }
+
+        public Bike(decimal pricePerDay, string bikeDescription, Bikekind kind)
         {
             PricePerDay = pricePerDay;
             Description = bikeDescription;
             Kind = kind;
-            ID = id;
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string s = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(s));

@@ -17,9 +17,9 @@ namespace Business
         public event PropertyChangedEventHandler PropertyChanged;
 
         private DBHandler handler;
-        private ObservableCollection<Bike> bikes;
-        private ObservableCollection<Rentee> renters = new ObservableCollection<Rentee>();//Testing//{ new Rentee("fr","fefrt","4556435",DateTime.Now,2) };
-        private ObservableCollection<Order> orders;
+        private ObservableCollection<Bike> bikes = new ObservableCollection<Bike>();
+        private ObservableCollection<Rentee> renters = new ObservableCollection<Rentee>();
+        private ObservableCollection<Order> orders = new ObservableCollection<Order>();
 
 
         public ObservableCollection<Bike> Bikes
@@ -187,14 +187,16 @@ namespace Business
             switch (type.Name)
             {
                 case "Bike":
-                    bikes = new ObservableCollection<Bike>(handler.GetAllBikes());
+                    bikes.Clear();
+                    handler.GetAllBikes().ForEach(x => bikes.Add(x));
                     break;
                 case "Order":
-                    orders = new ObservableCollection<Order>(handler.GetAllOrders());
+                    orders.Clear();
+                    handler.GetAllOrders().ForEach(x => orders.Add(x));
                     break;
                 case "Rentee":
-                    Renters = new ObservableCollection<Rentee>(handler.GetAllRentees());
-                    break;
+                    renters.Clear();
+                    handler.GetAllRentees().ForEach(x => renters.Add(x)); break;
                 default:
                     break;
             }

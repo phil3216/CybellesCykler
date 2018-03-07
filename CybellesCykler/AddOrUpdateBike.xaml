@@ -1,0 +1,27 @@
+﻿<Window x:Class="CybellesCykler.AddOrUpdateBike"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CybellesCykler"
+        mc:Ignorable="d"
+        Title="AddAndUpdate" Height="223.531" Width="552.666">
+    <Grid>
+        <Button Content="Ok" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="231" Click="OK_Click"/>
+        <Button Content="Fortryd" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="231" Click="Cancel_Click"/>
+        <TextBox x:Name="BikeDescription" HorizontalAlignment="Left" Height="107" Margin="10,39,0,0" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" Width="231" AcceptsReturn="True" AcceptsTab="True"/>
+        <Label Content="Beskrivelse" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="74"/>
+        <TextBox x:Name="PricePerDay" HorizontalAlignment="Right" Height="23" Margin="0,39,10,0" TextWrapping="Wrap" Text="{Binding PricePerDay}" VerticalAlignment="Top" Width="231"/>
+        <Label Content="Pris pr.dag (I DKK)" HorizontalAlignment="Left" Margin="304,13,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="BikeType" HorizontalAlignment="Right" Margin="0,124,10,0" VerticalAlignment="Top" Width="231">
+            <ComboBoxItem x:Name="MountainType" Content="Mountain"/>
+            <ComboBoxItem x:Name="CityType" Content="By"/>
+            <ComboBoxItem x:Name="TandemType" Content="Tandem"/>
+            <ComboBoxItem x:Name="UnicycleType" Content="Unicykel"/>
+            <ComboBoxItem x:Name="PediCabType" Content="Cykeltaxi"/>
+            <ComboBoxItem x:Name="PennyFarthingType" Content="Væltepeter"/>
+        </ComboBox>
+        <Label Content="Cykel type" HorizontalAlignment="Left" Margin="304,98,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

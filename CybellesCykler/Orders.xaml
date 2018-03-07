@@ -30,9 +30,9 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Label Content="Orders" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="138"/>
-        <Button Content="Opret" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Width="59" Grid.Row="1"/>
-        <Button Content="Rediger" HorizontalAlignment="Left" Margin="80,3,0,0" VerticalAlignment="Top" Width="59" Grid.Row="1"/>
-        <Button Content="Slet" HorizontalAlignment="Left" Margin="150,3,0,0" VerticalAlignment="Top" Width="59" Grid.Row="1"/>
+        <Button x:Name="Create" Content="Opret" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Width="59" Grid.Row="1"/>
+        <Button x:Name="Edit" Content="Rediger" HorizontalAlignment="Left" Margin="80,3,0,0" VerticalAlignment="Top" Width="59" Grid.Row="1"/>
+        <Button x:Name="Delete" Content="Slet" HorizontalAlignment="Left" Margin="150,3,0,0" VerticalAlignment="Top" Width="59" Grid.Row="1" Click="Delete_Click"/>
         <GroupBox Header="Information" Margin="3,36,8,10" Grid.Column="1" Grid.RowSpan="2">
             <Grid x:Name="SelectedOrder" HorizontalAlignment="Left" Height="353" VerticalAlignment="Top" Width="176" Margin="0,0,-3.2,0">
                 <Label x:Name="Lejernavn" Content="{Binding Rentee.Name,Mode=OneWay, StringFormat='{}Lejernavn: {0}'}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>

@@ -134,13 +134,17 @@ namespace Entities
             return (true, String.Empty);
         }
 
-        public Rentee(string name,string address,string phonenumber,DateTime registerDate,int id)
+        public Rentee(string name, string address, string phonenumber, DateTime registerDate, int id) : this(name,address,phonenumber,registerDate)
+        {
+            ID = id;
+        }
+
+        public Rentee(string name,string address,string phonenumber,DateTime registerDate)
         {
             Name = name;
             Address = address;
             Phonenumber = phonenumber;
             RegisterDate = registerDate;
-            ID = id;
         }
 
 

@@ -35,5 +35,10 @@ namespace CybellesCykler
         {
             SelectedOrder.DataContext = OrdersList.SelectedItem;
         }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            dataController.DeleteEntity((IPersistable)OrdersList.SelectedItem);
+        }
     }
 }

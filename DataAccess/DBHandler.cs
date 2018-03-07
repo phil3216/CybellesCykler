@@ -196,7 +196,7 @@ namespace DataAccess
             SqlCommand command = new SqlCommand("UPDATE Bikes SET BikeDescription=@bikeDescription,PricePerDay=@pricePerDay,BikeKind=@bikeKind WHERE ID=@id");
             command.Parameters.AddWithValue("@id", bike.ID);
             command.Parameters.AddWithValue("@bikeDescription", bike.Description);
-            command.Parameters.AddWithValue("@phonenumber", bike.PricePerDay);
+            command.Parameters.AddWithValue("@pricePerDay", bike.PricePerDay);
             command.Parameters.AddWithValue("@bikeKind", bike.Kind);
 
             return ExecuteNonQuery(command);

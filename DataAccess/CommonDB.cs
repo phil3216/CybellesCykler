@@ -34,13 +34,15 @@ namespace DataAccess
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (command)
                 {
+                    connection.Open();
                     command.Connection = connection;
                     command.ExecuteNonQuery();
+                    connection.Close();
                 }
 
                 return true;
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
                 return false;
             }
