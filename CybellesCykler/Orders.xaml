@@ -47,7 +47,7 @@
                 <TextBlock  HorizontalAlignment="Left" Margin="15,257,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="86" Width="156" Text="{Binding Bike.Description}"/>
             </Grid>
         </GroupBox>
-        <Button Content="Vejrudsigt" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top" Width="59" Grid.Row="1"/>
+        <Button x:Name="Weather" Content="Vejrudsigt" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top" Width="59" Grid.Row="1" Click="Weather_Click"/>
 
     </Grid>
 </Window>

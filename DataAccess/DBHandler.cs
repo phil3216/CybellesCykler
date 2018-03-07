@@ -65,6 +65,13 @@ namespace DataAccess
             return new Bike(pricePerDay, bikeDescription, kind, id);
         }
 
+        /// <summary>
+        /// Gets all bikes that are in the database
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <returns>A list of all bikes</returns>
         public List<Bike> GetAllBikes()
         {
             SqlCommand command = new SqlCommand("SELECT * FROM Bikes");
@@ -85,6 +92,10 @@ namespace DataAccess
             return bikes;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<Order> GetAllOrders()
         {
             List<Bike> bikes = GetAllBikes();

@@ -19,7 +19,7 @@ namespace DataAccess
 
 
         /// <summary>
-        /// 
+        /// Runs the sql command and returns false if something went wrong
         /// </summary>
         /// <param name="command"></param>
         /// <remarks>
@@ -42,14 +42,16 @@ namespace DataAccess
 
                 return true;
             }
+#pragma warning disable CS0168 // Variable is declared but never used
             catch (SqlException ex)
+#pragma warning restore CS0168 // Variable is declared but never used
             {
                 return false;
             }
         }
 
         /// <summary>
-        /// 
+        /// Runs the sql command and returns a Dataset that represents the output
         /// </summary>
         /// <param name="command"></param>
         /// <param name="type"></param>

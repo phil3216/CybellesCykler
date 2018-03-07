@@ -1,7 +1,9 @@
-﻿using Business;
+﻿using System.Configuration;
+using Business;
 using Entities;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,8 +78,8 @@ namespace CybellesCykler
             }
 
             Order order = (Order)OrdersList.SelectedItem;
-            order = new Order(order.Bike, order.Rentee, order.RentDate, order.DeliveryDate,order.ID);
-            AddOrUpdateOrder add = new AddOrUpdateOrder(order, dataController.Renters.ToList(),dataController.Bikes.ToList());
+            order = new Order(order.Bike, order.Rentee, order.RentDate, order.DeliveryDate, order.ID);
+            AddOrUpdateOrder add = new AddOrUpdateOrder(order, dataController.Renters.ToList(), dataController.Bikes.ToList());
             add.Title = "Rediger";
             add.ShowDialog();
 
@@ -85,6 +87,21 @@ namespace CybellesCykler
             {
                 dataController.UpdateEntity(order);
             }
+        }
+
+        private void Weather_Click(object sender, RoutedEventArgs e)
+        {
+
+            WeatherController controller = new WeatherController(ConfigurationManager.AppSettings["WeatherAPIKey"]);
+            WeatherData today = controller.GetTodaysWeather(ConfigurationManager.AppSettings["WeatherCity"]);
+            WeatherData tomorrow = controller.GetTomorrowsWeather(ConfigurationManager.AppSettings["WeatherCity"]);
+            string s = $"Vejret for {today.City} i dag:\r\n" +
+                       $"Temperatur: {today.Temperature:##}\r\n" +
+                       $"Type: {today.Forecast}\r\n\r\n" +
+                       $"Vejret i morgen:\r\n" +
+                       $"Temperatur: {tomorrow.Temperature}\r\n" +
+                       $"Type: {tomorrow.Forecast}\r\n\r\n";
+            MessageBox.Show(s);
         }
     }
 }

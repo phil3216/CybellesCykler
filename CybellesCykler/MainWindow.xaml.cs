@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using System.Configuration;
+using Entities;
 using Business;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,8 @@ namespace CybellesCykler
         public MainWindow()
         {
             InitializeComponent();
-            dataController = new DataController(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Cycling;Integrated Security=True");
+            
+            dataController = new DataController(ConfigurationManager.ConnectionStrings["Standard"].ConnectionString);
             BindingOperations.SetBinding(DtgSelected, DataGrid.ItemsSourceProperty, new Binding("Renters") { Source = dataController });
             dataController.ReloadEntities<Rentee>();
         }
